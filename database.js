@@ -1,11 +1,10 @@
 const mongoose = require('mongoose');
+const mongoURI = process.env.mongoURI
 
-mongoose.connect('mongodb://localhost/ovem', {
+mongoose.connect("URL", {
     useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useCreateIndex: true
+    useUnifiedTopology: true
 });
 
-mongoose.set('useFindAndModify', false);
 
-module.exports = mongoose;
+module.exports = mongoose;  
