@@ -6,6 +6,23 @@ module.exports = {
     create: async (req, res) => {
         const { name, email, password } = req.body;
 
+        if(name == "")
+        {
+            return res.send({ message: "you need a name"});
+        } else if (email == "")
+        {
+            return res.send({ message: "you need a email"});
+        } else if (password == "")
+        {
+            return res.send({ message: "you need a strong password"});
+        } else if (name.length < 4)
+        {
+            return res.send({ message: "you need a name longer than 4 characters"});
+        } else if (password.length < 6)
+        {
+            return res.send({ message: "your password is too weak, try other"});
+        }
+
         let formatEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
         if (!formatEmail.test(email))
         {
@@ -22,7 +39,7 @@ module.exports = {
             });
         } else
         {
-            const hashPassword = bcrypt.hashSync(password);
+            const hashPassword = bcrypt.hashSync(password, salt);
 
             await UserModel.create({
                 name: name,
