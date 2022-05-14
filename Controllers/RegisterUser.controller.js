@@ -1,7 +1,7 @@
 const UserModel = require('../Models/UserModel');
 
 module.exports = {
-    Register: async (req, res) => {
+    create: async (req, res) => {
         const { name, email, password } = req.body;
 
         const verifyEmail = await UserModel.findOne({email: email});

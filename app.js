@@ -8,7 +8,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.json({ type: 'application/*+json' }));
 
 const RegisterRoute = require('./Routes/RegisterUser.route');
-app.use('/register', RegisterRoute);
+app.use('/create', RegisterRoute);
 
 app.listen(PORT, () => {
     console.log("OVEM API IS RUNNING");
