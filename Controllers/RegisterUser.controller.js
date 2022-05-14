@@ -1,4 +1,6 @@
 const UserModel = require('../Models/UserModel');
+const bcrypt = require('bcryptjs');
+const salt = bcrypt.genSaltSync(10);
 
 module.exports = {
     create: async (req, res) => {
@@ -20,13 +22,15 @@ module.exports = {
             });
         } else
         {
+            const hashPassword = bcrypt.hashSync(password);
+
             await UserModel.create({
                 name: name,
                 email: email,
-                password: password
+                password: hashPassword
             });
 
-            return res.send({name,email,password});
+            return res.send({name,email});
         }
     } 
 }
