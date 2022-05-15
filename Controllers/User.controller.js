@@ -50,7 +50,7 @@ module.exports = {
             return res.send({name,email});
         }
     },
-    
+
     login: async (req, res) => {
         const { email, password} = req.body;
 
@@ -79,5 +79,17 @@ module.exports = {
         } else {
             return res.send({ message: "email not found" });
         }
-    } 
+    },
+
+    loggout: async (req, res) => {
+        req.session.destroy((err) => {
+            if (err) {
+                return res.send({ message: err });
+            }
+
+            return res.send({
+                session: req.session
+            });
+        });
+    }
 }
