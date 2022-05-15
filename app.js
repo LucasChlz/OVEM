@@ -9,11 +9,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.json({ type: 'application/*+json' }));
 
-const RegisterRoute = require('./Routes/RegisterUser.route');
+const UserRoute = require('./Routes/User.route');
 const LoginRoute = require('./Routes/LoginUser.route');
 
-app.use('/create', RegisterRoute);
-app.use('/login', LoginRoute);
+app.use('/user', UserRoute);
 
 
 app.listen(PORT, () => {
